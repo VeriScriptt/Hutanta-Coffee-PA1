@@ -100,10 +100,9 @@
 /* 
 MODIF
 */
-@media (min-width: 200px) and (max-width: 1126px) {
+@media (min-width: 200px) and (max-width: 1000px) {
   .coffee {
-    padding-bottom: 0px;
-    margin-bottom: 0px;
+    margin-bottom: -310px;
   }
   .slider_section {
     height: 100px;
@@ -113,11 +112,22 @@ MODIF
     margin: -100px !important;
     padding: -100px !important;
   }
+  .card-produk {
+    height: 270px;
+  }
+  .kopi_bubuk {
+    width: 900px;
+  }
+  .fa-user {
+    justify-content: center;
+  }
+  .detail_logo {
+    display: none;
+  }
 }
-@media (min-width: 500px) and (max-width: 1200px) {
+@media (min-width: 500px) and (max-width: 1500px) {
   .coffee {
-    padding-bottom: 100px;
-    margin-bottom: 0px;
+    margin-bottom: -200px;
   }
   .slider_section {
     height: 100px;

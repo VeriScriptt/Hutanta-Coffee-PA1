@@ -18,6 +18,7 @@ function tambah($data)
     $id_produk = htmlspecialchars($data["id_produk"]);
     $nama_produk = htmlspecialchars($data["nama_produk"]);
     $tipe_produk = htmlspecialchars($data["tipe_produk"]);
+    $kuantitas = htmlspecialchars($data["kuantitas"]);
     $deskripsi = htmlspecialchars($data["deskripsi"]);
     $harga_produk = htmlspecialchars($data["harga_produk"]);
 
@@ -32,7 +33,7 @@ function tambah($data)
 
     $query = "INSERT INTO produk 
                 VALUES
-            ('$id_produk', '$nama_produk','$tipe_produk','$deskripsi', '$harga_produk','$gambar_produk')
+            ('$id_produk', '$nama_produk', '$deskripsi','$kuantitas', '$tipe_produk', '$harga_produk','$gambar_produk')
         ";
     mysqli_query($conn, $query);
 

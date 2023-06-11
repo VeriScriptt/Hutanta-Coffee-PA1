@@ -4,6 +4,12 @@ if (!isset($_SESSION["auth"])) {
     header("Location: ../customer side/login.php");
     exit;
 }
+
+if ($_SESSION['id_akun'] !== '1') {
+    // Jika pengguna bukan admin, arahkan ke halaman lain atau tampilkan pesan akses ditolak
+    header('Location: ../customer side/index.php');
+    exit;
+}
 ?>
 
 <?php
@@ -49,6 +55,7 @@ if (isset($_POST["submit"])) {
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../customer side/images/hutanta.png" type="" />
 
 </head>
 
@@ -72,7 +79,7 @@ if (isset($_POST["submit"])) {
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Beranda</span></a>
@@ -108,7 +115,7 @@ if (isset($_POST["submit"])) {
             </div>
 
             <!-- Nav Item - Konten -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="konten.php">
                     <i class="fas fa-fw fa-camera"></i>
                     <span>Konten</span></a>
@@ -199,14 +206,7 @@ if (isset($_POST["submit"])) {
                                             <h6 class="m-0 font-weight-bold text-primary">Tambah Daftar Konten</h6>
                                         </div>
                                         <div class="card-body">
-                                            <form action="" method="post" enctype="multipart/form-data">
-                                                <div class="form-group row">
-                                                    <label for="judul" class="col-sm-2 col-form-label">Judul</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="hidden" name="id_konten" id="id_konten">
-                                                        <input type="text" class="form-control" id="judul" name="judul" required>
-                                                    </div>
-                                                </div>
+                                            <form action="" method="post" enctype="multipart/form-data">    
                                                 <div class="form-group row">
                                                     <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
                                                     <div class="col-sm-10">

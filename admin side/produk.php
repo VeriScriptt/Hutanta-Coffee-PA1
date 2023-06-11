@@ -36,8 +36,7 @@ $produk1 = query("SELECT * FROM produk");
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-
+    <link rel="shortcut icon" href="../customer side/images/hutanta.png" type="" />
 
 </head>
 
@@ -61,7 +60,7 @@ $produk1 = query("SELECT * FROM produk");
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Beranda</span></a>
@@ -76,7 +75,7 @@ $produk1 = query("SELECT * FROM produk");
             </div>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            <li class="nav-item active" >
                 <a class="nav-link" href="produk.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Produk</span></a>
@@ -250,12 +249,6 @@ $produk1 = query("SELECT * FROM produk");
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
 
                 </div>
                 <!-- /.container-fluid -->

@@ -4,6 +4,12 @@ if (!isset($_SESSION["auth"])) {
     header("Location: ../customer side/login.php");
     exit;
 }
+
+if ($_SESSION['id_akun'] !== '1') {
+    // Jika pengguna bukan admin, arahkan ke halaman lain atau tampilkan pesan akses ditolak
+    header('Location: ../customer side/index.php');
+    exit;
+}
 require 'function.php';
 
 $ulasan = query("SELECT * FROM ulasan  INNER JOIN pelanggan ON ulasan.id_pelanggan = pelanggan.id_pelanggan");
@@ -37,6 +43,7 @@ $total_pemesanan = count($pemesanan);
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../customer side/images/hutanta.png" type="" />
 
 </head>
 
@@ -193,7 +200,7 @@ $total_pemesanan = count($pemesanan);
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Jumlah Pemesanan</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_pelanggan; ?></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_pemesanan; ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

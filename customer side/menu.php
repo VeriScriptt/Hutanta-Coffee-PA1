@@ -156,34 +156,36 @@ $resultIdAkun = mysqli_fetch_assoc($query);
 
       <div class="filters-content">
         <div class="row grid">
-
+      <!-- style="height:250px" -->
 
           <?php foreach ($produk_makanan as $row) : ?>
             <a href="detail.php?id=<?= $row["id_produk"]; ?>">
-              <div class="col-sm-6 col-lg-4 all filter-makanan">
-                <div class="box" id="zoom-effect">
+              <div class="col-6 col-lg-3 all filter-makanan" >
+                <div class="box card-produk" id="zoom-effect">
                   <div class="kotak">
                     <img src="../img/<?= $row["gambar_produk"]; ?>" class="img-fluid" alt="">
                   </div>
                   <div class="portfolio-info" id="konten">
-                    <h4><?= $row["nama_produk"]; ?></h4>
+                    <h6><?= $row["nama_produk"]; ?></h6>
+                    <div class="spaceharga"></div>
                     <p><?= "Rp.", number_format($row["harga_produk"], 0, ',', '.'); ?></p>
                   </div>
                 </div>
               </div>
             </a>
           <?php endforeach; ?>
-
+ 
           <div class="produk">
             <?php foreach ($produk_minuman as $row) : ?>
               <a href="detail.php?id=<?= $row["id_produk"]; ?>">
-                <div class="col-sm-6 col-lg-4 all filter-minuman">
-                  <div class="box" id="zoom-effect">
+                <div class="col-6 col-lg-3 all filter-minuman">
+                  <div class="box card-produk" id="zoom-effect">
                     <div class="kotak">
                       <img src="../img/<?= $row["gambar_produk"]; ?>" class="img-fluid" alt="">
                     </div>
                     <div class="portfolio-info" id="konten">
-                      <h4><?= $row["nama_produk"]; ?></h4>
+                      <h6><?= $row["nama_produk"]; ?></h6>
+                      <div class="spaceharga"></div>
                       <p><?= "Rp.", number_format($row["harga_produk"], 0, ',', '.'); ?></p>
                     </div>
                   </div>
@@ -194,13 +196,14 @@ $resultIdAkun = mysqli_fetch_assoc($query);
 
           <?php foreach ($produk_toping as $row) : ?>
             <a href="detail.php?id=<?= $row["id_produk"]; ?>">
-              <div class="col-sm-6 col-lg-4 all filter-toping">
-                <div class="box" id="zoom-effect">
+              <div class="col-6 col-lg-3 all filter-toping">
+                <div class="box card-produk" id="zoom-effect">
                   <div>
                     <img src="../img/<?= $row["gambar_produk"]; ?>" class="img-fluid" alt="">
                   </div class="kotak">
                   <div class="portfolio-info" id="konten">
-                    <h4><?= $row["nama_produk"]; ?></h4>
+                    <h6><?= $row["nama_produk"]; ?></h6>
+                    <div class="spaceharga"></div>
                     <p><?= "Rp.", number_format($row["harga_produk"], 0, ',', '.'); ?></p>
                   </div>
                 </div>
@@ -210,13 +213,14 @@ $resultIdAkun = mysqli_fetch_assoc($query);
 
           <?php foreach ($produk_snack as $row) : ?>
             <a href="detail.php?id=<?= $row["id_produk"]; ?>">
-              <div class="col-sm-6 col-lg-4 all filter-snack">
-                <div class="box" id="zoom-effect">
+              <div class="col-6 col-lg-3 all filter-snack">
+                <div class="box card-produk" id="zoom-effect">
                   <div>
                     <img src="../img/<?= $row["gambar_produk"]; ?>" class="img-fluid" alt="">
                   </div class="kotak">
                   <div class="portfolio-info" id="konten">
-                    <h4><?= $row["nama_produk"]; ?></h4>
+                    <h6><?= $row["nama_produk"]; ?></h6>
+                    <div class="spaceharga"></div>
                     <p><?= "Rp.", number_format($row["harga_produk"], 0, ',', '.'); ?></p>
                   </div>
                 </div>

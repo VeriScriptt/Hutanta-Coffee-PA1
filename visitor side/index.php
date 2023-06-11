@@ -1,7 +1,11 @@
 <?php
 
 require 'function.php';
-
+session_start();
+if (isset($_SESSION["auth"])) {
+  header("Location: ../customer side/index.php");
+  exit;
+}
 
 
 
@@ -46,6 +50,8 @@ $total_ulasan = count($ulasan);
   <link rel="stylesheet" type="text/css" href="css/style2.css" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="../customer side/images/hutanta.png" type="" />
+
 </head>
 
 <body class>
@@ -167,13 +173,13 @@ $total_ulasan = count($ulasan);
           <h2>Kopi Spesial Untuk Mu</h2>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-6">
             <div class="box">
-              <div class="img-box">
-                <img src="../customer side/images/Kopi Toba Robusta.jpg" alt="" />
+              <div class="img-box gambar">
+                <img class="kopi_bubuk" src="../customer side/images/Kopi Toba Robusta.jpg" alt="" />
               </div>
               <div class="detail-box">
-                <h5>Kopi Toba Robusta</h5>
+                <h5 style="font-family: Georgia">Kopi Toba Robusta</h5>
                 <h6><span>Rp</span> 48.000</h6>
                 <a href="whatsapp://send?text=Hallo%20Hutanta%20Coffee%2C%20saya%20ingin%20melakukan%20pemesanan%20produk.%0ANama%3A%20(Diisi%20nama%20lengkap)%0AAlamat%3A%20(Jalan%2C%20No%2C%20Gang%2C%20RT%2FRW%2FDusun%2C%20Kel%2C%20Kec%2C%20Kab%2FKota%2C%20Provinsi%2C%20Kode%20Pos)%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20No%20Telepon%3A%20(No%20aktif%20yang%20bisa%20dihubungi)%0AOrder%20%3A%20Kopi%20Toba%20Robusta%0AHarga%C2%A0%3A%C2%A0Rp%C2%A048.000&phone=+6285783303761">
                   <i class="fa fa-whatsapp" aria-hidden="true"></i> Pesan Sekarang
@@ -218,13 +224,13 @@ $total_ulasan = count($ulasan);
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-6">
             <div class="box">
               <div class="img-box">
                 <img src="../customer side/images/Kopi Toba Arabica.jpg" alt="" />
               </div>
               <div class="detail-box">
-                <h5>Kopi Toba Arabica</h5>
+                <h5 style="font-family: Georgia">Kopi Toba Arabica</h5>
                 <h6><span>Rp</span> 56.000</h6>
                 <a href="whatsapp://send?text=Hallo%20Hutanta%20Coffee%2C%20saya%20ingin%20melakukan%20pemesanan%20produk.%0ANama%3A%20(Diisi%20nama%20lengkap)%0AAlamat%3A%20(Jalan%2C%20No%2C%20Gang%2C%20RT%2FRW%2FDusun%2C%20Kel%2C%20Kec%2C%20Kab%2FKota%2C%20Provinsi%2C%20Kode%20Pos)%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20No%20Telepon%3A%20(No%20aktif%20yang%20bisa%20dihubungi)%0AOrder%20%3A%20Kopi%20Toba%20Arabica%0AHarga%C2%A0%3A%C2%A0Rp%C2%A056.000&phone=+6285783303761">
                   <i class="fa fa-whatsapp" aria-hidden="true"></i> Pesan Sekarang
@@ -272,7 +278,7 @@ $total_ulasan = count($ulasan);
         </div>
       </div>
     </div>
-  </section>
+  </section>
 
 
   <!-- end offer section -->
@@ -292,7 +298,7 @@ $total_ulasan = count($ulasan);
               <h2>Kami Hutanta</h2>
             </div>
             <p>
-            Mari jelajahi petualangan tak terlupakan di Hutanta Coffee, tempat di mana keindahan alam memukau, rasa kopi memikat, dan hidangan lezat berpadu harmonis. Mari eksplorasi ruang indah, dengan sentuhan artistik dan cahaya mempesona yang menggugah hati. Nikmati aroma menggoda, hidangan kreatif, dan keahlian barista yang memanjakan. Rasakan cita rasa yang memukau, hanyut dalam kenikmatan tak terlupakan. Mari bersama menikmati keindahan, cita rasa kopi, dan hidangan yang menggugah selera di Hutanta Coffee.
+              Mari jelajahi petualangan tak terlupakan di Hutanta Coffee, tempat di mana keindahan alam memukau, rasa kopi memikat, dan hidangan lezat berpadu harmonis. Mari eksplorasi ruang indah, dengan sentuhan artistik dan cahaya mempesona yang menggugah hati. Nikmati aroma menggoda, hidangan kreatif, dan keahlian barista yang memanjakan. Rasakan cita rasa yang memukau, hanyut dalam kenikmatan tak terlupakan. Mari bersama menikmati keindahan, cita rasa kopi, dan hidangan yang menggugah selera di Hutanta Coffee.
             </p>
             <a href="about.php">Lanjutkan Membeca</a>
           </div>
@@ -305,10 +311,10 @@ $total_ulasan = count($ulasan);
 
 
   <!-- book section -->
-  <section class="book_section layout_padding">
+  <section class="book_section layout_padding"  style="margin-bottom:-100px">
     <div class="container">
-      <div class="heading_container">
-        <h1 style="font-family: roboto;">Detail Lokasi</h1>
+      <div class="heading_container heading_center psudo_white_primary mb_45">
+        <h2>Detail Lokasi</h2>
       </div>
       <div class="row">
 
@@ -324,8 +330,8 @@ $total_ulasan = count($ulasan);
 
   <section class="book_section layout_padding">
     <div class="container">
-      <div class="heading_container">
-        <h1 style="font-family: roboto;">Tour Virtual</h1>
+      <div class="heading_container heading_center psudo_white_primary mb_45">
+        <h2>Tour Virtual</h2>
       </div>
       <div class="row">
         <div class="col-md-12">
@@ -370,11 +376,11 @@ $total_ulasan = count($ulasan);
 
   <!-- footer section -->
   <footer class="footer_section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4 footer-col">
-            <div class="footer_detail">
-              <a href="" class="footer-logo"> <img src="../customer side/images/hutanta.png" /><br /> </a>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 footer-col">
+          <div class="footer_detail">
+            <a href="" class="footer-logo"> <img src="../customer side/images/hutanta.png" /><br /> </a>
             <p>Jl. P. Siantar No.KM 2, Sibola Hotangsas, Kec.Balige, Toba, Sumatera Utara</p>
             <div class="footer_social">
               <a href="https://www.facebook.com/hutantacom">

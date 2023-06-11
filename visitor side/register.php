@@ -24,7 +24,7 @@ if (isset($_POST["register"])) {
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <link rel="shortcut icon" href="images/hutanta.png" type="" />
+  <link rel="shortcut icon" href="../customer side/images/hutanta.png" type="" />
 
   <title>Daftar</title>
 

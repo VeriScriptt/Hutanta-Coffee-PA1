@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2023 at 06:42 AM
+-- Generation Time: Jun 11, 2023 at 04:21 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -66,19 +66,6 @@ INSERT INTO `akun` (`id_akun`, `email`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `keranjang`
---
-
-CREATE TABLE `keranjang` (
-  `id_keranjang` int(11) NOT NULL,
-  `id_produk` int(11) NOT NULL,
-  `kuantitas` int(11) NOT NULL,
-  `id_pelanggan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `konten`
 --
 
@@ -94,7 +81,7 @@ CREATE TABLE `konten` (
 --
 
 INSERT INTO `konten` (`id_konten`, `keterangan`, `gambar`, `judul`) VALUES
-(3, 'fino alla fine', '646a41fce92fc.jpeg', 'Allianz Stadium'),
+(3, 'vino bastian', '646a41fce92fc.jpeg', ''),
 (4, 'kopi toba', '647dddc833ed5.jpg', 'judul 2'),
 (5, 'contoh konten', '647dde0685aa2.jpg', 'judul 3'),
 (6, 'kopi toba', '647de023a3284.jpg', 'judul 3'),
@@ -162,34 +149,13 @@ INSERT INTO `pemesanan` (`id_pemesanan`, `id_pelanggan`, `status`, `tanggal`, `t
 (10, 5, 'Menunggu', '2023-06-07 06:12:54', '110000'),
 (11, 5, 'Menunggu', '2023-06-07 06:14:49', '28000'),
 (12, 5, 'Menunggu', '2023-06-07 06:19:37', '28000'),
-(13, 5, 'Verifikasi', '2023-06-07 06:30:32', '73000');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `products`
---
-
-CREATE TABLE `products` (
-  `id` int(11) NOT NULL,
-  `name` varchar(200) NOT NULL,
-  `desc` text NOT NULL,
-  `price` decimal(7,2) NOT NULL,
-  `rrp` decimal(7,2) NOT NULL DEFAULT 0.00,
-  `quantity` int(11) NOT NULL,
-  `img` text NOT NULL,
-  `date_added` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`id`, `name`, `desc`, `price`, `rrp`, `quantity`, `img`, `date_added`) VALUES
-(1, 'camera', 'Camera Canon P40 series', '55.00', '0.00', 10, 'camera.jpg', '2023-05-15 16:06:26'),
-(2, 'headphones', 'headphones kualitas tinggi', '25.00', '0.00', 10, 'headphones.jpg', '2023-05-15 16:28:01'),
-(3, 'wallet', 'wallet terbuat dari kulit dino', '20.00', '0.00', 15, 'wallet.jpeg', '2023-05-15 16:29:36'),
-(4, 'watch', 'watch tahan air', '40.00', '0.00', 5, 'watch.jpeg', '2023-05-15 16:29:36');
+(13, 5, 'Verifikasi', '2023-06-07 06:30:32', '73000'),
+(14, 3, 'Menunggu', '2023-06-08 05:34:18', '260000'),
+(15, 3, 'Menunggu', '2023-06-08 05:34:37', '260000'),
+(16, 5, 'Menunggu', '2023-06-09 06:07:54', '35000'),
+(17, 5, 'Menunggu', '2023-06-09 06:08:18', '35000'),
+(18, 3, 'Menunggu', '2023-06-09 11:33:01', '60000'),
+(19, 5, 'Menunggu', '2023-06-11 16:15:35', '50000');
 
 -- --------------------------------------------------------
 
@@ -295,12 +261,6 @@ ALTER TABLE `akun`
   ADD PRIMARY KEY (`id_akun`);
 
 --
--- Indexes for table `keranjang`
---
-ALTER TABLE `keranjang`
-  ADD KEY `id_produk` (`id_produk`);
-
---
 -- Indexes for table `konten`
 --
 ALTER TABLE `konten`
@@ -320,12 +280,6 @@ ALTER TABLE `pelanggan`
 ALTER TABLE `pemesanan`
   ADD PRIMARY KEY (`id_pemesanan`),
   ADD KEY `id_pelanggan` (`id_pelanggan`);
-
---
--- Indexes for table `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `produk`
@@ -366,19 +320,13 @@ ALTER TABLE `pelanggan`
 -- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `products`
---
-ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_produk` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `ulasan`
@@ -395,12 +343,6 @@ ALTER TABLE `ulasan`
 --
 ALTER TABLE `admin`
   ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`id_akun`) REFERENCES `akun` (`id_akun`);
-
---
--- Constraints for table `keranjang`
---
-ALTER TABLE `keranjang`
-  ADD CONSTRAINT `keranjang_ibfk_1` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`);
 
 --
 -- Constraints for table `pelanggan`

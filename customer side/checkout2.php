@@ -7,10 +7,17 @@ $query = mysqli_query($koneksi, "SELECT * FROM pelanggan INNER JOIN akun ON akun
 $resultIdAkun = mysqli_fetch_assoc($query);
 
 if (isset($_POST["checkout"])) {
+    $id_pelanggan =  $resultIdAkun['id_pelanggan'];
+    $tanggal_pembelian = date("Y-m-d H:i:s");
+    $status_pemesanan = 'Menunggu';
+    $totalbelanja = $totalbelanja;
+
+    // Menyimpan data ke tabel pemesanan
+    $koneksi->query("INSERT INTO pemesanan VALUES ('$id_pemesanan', '$id_pelanggan','$status_pemesanan', '$tanggal_pembelian', '$totalbelanja')");
     echo "<script>
         alert('Produk Berhasil Dicheckout');
     </script>";
-    echo "<meta http-equiv='refresh' content='0.1;url=menu.php'>";
+    echo "<meta http-equiv='refresh' content='2;url=menu.php'>";
 }
 ?>
 
@@ -21,7 +28,7 @@ if (isset($_POST["checkout"])) {
 <head>
 
     <title>Check Out</title>
-    
+
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="shortcut icon" href="images/hutanta.png" type="" />
@@ -89,8 +96,6 @@ if (isset($_POST["checkout"])) {
                         $ambil = $koneksi->query("SELECT * FROM produk WHERE id_produk='$id_produk'");
                         $pecah = $ambil->fetch_assoc();
                         $subharga = $pecah["harga_produk"] * $jumlah;
-
-
                         ?>
                         <tr>
                             <td><?php echo $nomor; ?></td>
@@ -98,12 +103,10 @@ if (isset($_POST["checkout"])) {
                             <td>Rp.<?php echo number_format($pecah["harga_produk"]); ?></td>
                             <td><?php echo $jumlah; ?></td>
                             <td>Rp.<?php echo number_format($subharga); ?></td>
-
                         </tr>
                         <?php $nomor++ ?>
                         <?php $totalbelanja += $subharga; ?>
                     <?php endforeach ?>
-
                 </tbody>
                 <tfoot>
                     <tr>
@@ -112,8 +115,6 @@ if (isset($_POST["checkout"])) {
                     </tr>
                 </tfoot>
             </table>
-
-
             <form method="post" action="">
                 <div class="row">
                     <div class="col-md-4">
@@ -134,43 +135,14 @@ if (isset($_POST["checkout"])) {
                             <button id="checkout" class="btn btn-outline-success" name="checkout">
                                 Check Out
                             </button>
-                            <script>
-                                // Loop melalui item dalam keranjang
-                                <?php foreach ($_SESSION['keranjang'] as $id_produk => $jumlah) : ?>
-                                    <?php
-                                    // Ambil informasi produk dari database
-                                    $ambil = $koneksi->query('SELECT * FROM produk WHERE id_produk=' . $id_produk);
-                                    $pecah = $ambil->fetch_assoc();
-                                    $subtotal = $pecah['harga_produk'] * $jumlah;
-                                    ?>
-                                    // Tambahkan detail item ke pesan
-                                    message +=
-                                        " <?php echo $jumlah; ?> <?php echo $pecah['nama_produk']; ?> <?php echo 'Rp.' . number_format($subtotal); ?> ";
-                                <?php endforeach; ?>
-                                // Tambahkan total pembelian ke pesan
-                                message += " Total Belanja: <?php echo 'Rp.' . number_format($totalbelanja); ?> ";
-                                // Menyimpan data ke tabel pemesanan
-                                <?php
-                                if (isset($_POST["checkout"])) {
-                                    $id_pelanggan =  $resultIdAkun['id_pelanggan'];
-                                    $tanggal_pembelian = date("Y-m-d H:i:s");
-                                    $status_pemesanan = 'Menunggu';
-                                    $totalbelanja = $totalbelanja;
-                                    // Menyimpan data ke tabel pemesanan
-                                    $koneksi->query("INSERT INTO pemesanan VALUES ('$id_pemesanan', '$id_pelanggan','$status_pemesanan', '$tanggal_pembelian', '$totalbelanja')");
-                                }
-                                ?>
-                            </script>
                         </div>
                     </div>
-
-
-
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
-                    </script>
+                </div>
             </form>
+        </div>
     </section>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 
 </html>

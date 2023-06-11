@@ -4,6 +4,12 @@ if (!isset($_SESSION["auth"])) {
     header("Location: ../customer side/login.php");
     exit;
 }
+
+if ($_SESSION['id_akun'] !== '1') {
+    // Jika pengguna bukan admin, arahkan ke halaman lain atau tampilkan pesan akses ditolak
+    header('Location: ../customer side/index.php');
+    exit;
+}
 ?>
 <?php require 'function.php';
 $ulasan = query("SELECT * FROM ulasan ");
@@ -32,9 +38,7 @@ $ulasan = query("SELECT * FROM ulasan ");
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-
-
+    <link rel="shortcut icon" href="../customer side/images/hutanta.png" type="" />
 </head>
 
 <body id="page-top">
@@ -57,7 +61,7 @@ $ulasan = query("SELECT * FROM ulasan ");
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Beranda</span></a>
@@ -100,7 +104,7 @@ $ulasan = query("SELECT * FROM ulasan ");
             </li>
 
             <!-- Nav Item - Ulasan -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="ulasan.php">
                     <i class="fas fa-fw fa-comments"></i>
                     <span>Ulasan</span></a>

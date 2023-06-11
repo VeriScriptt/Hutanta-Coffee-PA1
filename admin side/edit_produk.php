@@ -4,6 +4,12 @@ if (!isset($_SESSION["auth"])) {
     header("Location: ../customer side/login.php");
     exit;
 }
+
+if ($_SESSION['id_akun'] !== '1') {
+    // Jika pengguna bukan admin, arahkan ke halaman lain atau tampilkan pesan akses ditolak
+    header('Location: ../customer side/index.php');
+    exit;
+}
 ?>
 <?php
 require 'function.php';
@@ -57,6 +63,7 @@ if (isset($_POST["submit"])) {
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../customer side/images/hutanta.png" type="" />
 
 </head>
 
@@ -80,7 +87,7 @@ if (isset($_POST["submit"])) {
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Beranda</span></a>
@@ -95,7 +102,7 @@ if (isset($_POST["submit"])) {
             </div>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="produk.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Produk</span></a>
@@ -268,7 +275,7 @@ if (isset($_POST["submit"])) {
                     <footer class="sticky-footer bg-white">
                         <div class="container my-auto">
                             <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Hutanta Coffee 2023</span>
+                                <span>Copyright &copy; Hutanta Coffee 2023</span>
                             </div>
                         </div>
                     </footer>

@@ -64,6 +64,7 @@ if (isset($_POST["login"])) {
   <meta name="description" content="" />
   <meta name="author" content="" />
   <link rel="shortcut icon" href="images/hutanta.png" type="" />
+  <link rel="shortcut icon" href="../customer side/images/hutanta.png" type="" />
 
   <title>Login</title>
 
@@ -97,7 +98,9 @@ if (isset($_POST["login"])) {
             <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
               <div class="card shadow-lg">
                 <div class="card-body p-5">
-                  <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
+                  <div class="heading_container heading_center psudo_white_primary mb_45">
+                    <h3>Login</h3>
+                  </div>
                   <form method="POST" action="" class="needs-validation">
                     <div class="mb-3">
                       <label class="mb-2 text-muted" for="email">E-Mail Address</label>
@@ -111,8 +114,8 @@ if (isset($_POST["login"])) {
                       <input id="password" type="password" class="form-control" name="password" required>
                     </div>
 
-                    <div class="d-flex align-items-center" style="align-items: center;">
-                      <button type="submit" class="btn btn-primary ms-auto login" name="login" id="login" >
+                    <div class="d-flex align-items-center justify-content-end">
+                      <button type="submit" class="btn btn-primary login" name="login" id="login">
                         Login
                       </button>
                     </div>

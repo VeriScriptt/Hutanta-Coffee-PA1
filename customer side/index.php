@@ -181,13 +181,13 @@ $total_ulasan = count($ulasan);
           <h2>Kopi Spesial Untuk Mu</h2>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-6">
             <div class="box">
-              <div class="img-box">
-                <img src="images/Kopi Toba Robusta.jpg" alt="" />
+              <div class="img-box gambar">
+                <img class="kopi_bubuk" src="../customer side/images/Kopi Toba Robusta.jpg" alt="" />
               </div>
               <div class="detail-box">
-                <h5>Kopi Toba Robusta</h5>
+                <h5 style="font-family: Georgia">Kopi Toba Robusta</h5>
                 <h6><span>Rp</span> 48.000</h6>
                 <a href="whatsapp://send?text=Hallo%20Hutanta%20Coffee%2C%20saya%20ingin%20melakukan%20pemesanan%20produk.%0ANama%3A%20(Diisi%20nama%20lengkap)%0AAlamat%3A%20(Jalan%2C%20No%2C%20Gang%2C%20RT%2FRW%2FDusun%2C%20Kel%2C%20Kec%2C%20Kab%2FKota%2C%20Provinsi%2C%20Kode%20Pos)%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20No%20Telepon%3A%20(No%20aktif%20yang%20bisa%20dihubungi)%0AOrder%20%3A%20Kopi%20Toba%20Robusta%0AHarga%C2%A0%3A%C2%A0Rp%C2%A048.000&phone=+6285783303761">
                   <i class="fa fa-whatsapp" aria-hidden="true"></i> Pesan Sekarang
@@ -232,13 +232,13 @@ $total_ulasan = count($ulasan);
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-6">
             <div class="box">
               <div class="img-box">
-                <img src="images/Kopi Toba Arabica.jpg" alt="" />
+                <img src="../customer side/images/Kopi Toba Arabica.jpg" alt="" />
               </div>
               <div class="detail-box">
-                <h5>Kopi Toba Arabica</h5>
+                <h5 style="font-family: Georgia">Kopi Toba Arabica</h5>
                 <h6><span>Rp</span> 56.000</h6>
                 <a href="whatsapp://send?text=Hallo%20Hutanta%20Coffee%2C%20saya%20ingin%20melakukan%20pemesanan%20produk.%0ANama%3A%20(Diisi%20nama%20lengkap)%0AAlamat%3A%20(Jalan%2C%20No%2C%20Gang%2C%20RT%2FRW%2FDusun%2C%20Kel%2C%20Kec%2C%20Kab%2FKota%2C%20Provinsi%2C%20Kode%20Pos)%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20No%20Telepon%3A%20(No%20aktif%20yang%20bisa%20dihubungi)%0AOrder%20%3A%20Kopi%20Toba%20Arabica%0AHarga%C2%A0%3A%C2%A0Rp%C2%A056.000&phone=+6285783303761">
                   <i class="fa fa-whatsapp" aria-hidden="true"></i> Pesan Sekarang
@@ -318,10 +318,10 @@ $total_ulasan = count($ulasan);
 
 
   <!-- book section -->
-  <section class="book_section layout_padding">
+  <section class="book_section layout_padding"  style="margin-bottom:-100px">
     <div class="container">
-      <div class="heading_container">
-        <h1 style="font-family: roboto;">Detail Lokasi</h1>
+      <div class="heading_container heading_center psudo_white_primary mb_45">
+        <h2>Detail Lokasi</h2>
       </div>
       <div class="row">
 
@@ -337,8 +337,8 @@ $total_ulasan = count($ulasan);
 
   <section class="book_section layout_padding">
     <div class="container">
-      <div class="heading_container">
-        <h1 style="font-family: roboto;">Tour Virtual</h1>
+      <div class="heading_container heading_center psudo_white_primary mb_45">
+        <h2>Tour Virtual</h2>
       </div>
       <div class="row">
         <div class="col-md-12">

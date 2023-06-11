@@ -4,6 +4,12 @@ if (!isset($_SESSION["auth"])) {
     header("Location: ../customer side/login.php");
     exit;
 }
+
+if ($_SESSION['id_akun'] !== '1') {
+    // Jika pengguna bukan admin, arahkan ke halaman lain atau tampilkan pesan akses ditolak
+    header('Location: ../customer side/index.php');
+    exit;
+}
 ?>
 
 <?php require 'function.php';
@@ -32,9 +38,7 @@ $pemesanan = query("SELECT * FROM pemesanan pem INNER JOIN pelanggan pel ON pem.
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-
-
+    <link rel="shortcut icon" href="../customer side/images/hutanta.png" type="" />
 </head>
 
 <body id="page-top">
@@ -57,7 +61,7 @@ $pemesanan = query("SELECT * FROM pemesanan pem INNER JOIN pelanggan pel ON pem.
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Beranda</span></a>
@@ -78,7 +82,7 @@ $pemesanan = query("SELECT * FROM pemesanan pem INNER JOIN pelanggan pel ON pem.
                     <span>Produk</span></a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="pemesanan.php">
                     <i class="fas fa-fw fa-shopping-bag"></i>
                     <span>Pemesanan</span></a>
@@ -240,16 +244,8 @@ $pemesanan = query("SELECT * FROM pemesanan pem INNER JOIN pelanggan pel ON pem.
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
-
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
 

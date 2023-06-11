@@ -16,7 +16,7 @@ $produk_snack = query("SELECT * FROM produk WHERE tipe_produk = 'Snack'");
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
   <!-- Site Metas -->
   <meta name="keywords" content="" />
   <meta name="description" content="" />
@@ -146,34 +146,36 @@ $produk_snack = query("SELECT * FROM produk WHERE tipe_produk = 'Snack'");
 
       <div class="filters-content">
         <div class="row grid">
-
+      <!-- style="height:250px" -->
 
           <?php foreach ($produk_makanan as $row) : ?>
-            <a href="products.php?id=<?= $row["id_produk"]; ?>">
-              <div class="col-sm-6 col-lg-4 all filter-makanan">
-                <div class="box" id="zoom-effect">
+            <a href="produk.php?id=<?= $row["id_produk"]; ?>">
+              <div class="col-6 col-lg-3 all filter-makanan" >
+                <div class="box card-produk" id="zoom-effect">
                   <div class="kotak">
                     <img src="../img/<?= $row["gambar_produk"]; ?>" class="img-fluid" alt="">
                   </div>
                   <div class="portfolio-info" id="konten">
-                    <h4><?= $row["nama_produk"]; ?></h4>
+                    <h6><?= $row["nama_produk"]; ?></h6>
+                    <div class="spaceharga"></div>
                     <p><?= "Rp.", number_format($row["harga_produk"], 0, ',', '.'); ?></p>
                   </div>
                 </div>
               </div>
             </a>
           <?php endforeach; ?>
-
+ 
           <div class="produk">
             <?php foreach ($produk_minuman as $row) : ?>
-              <a href="products.php?id=<?= $row["id_produk"]; ?>">
-                <div class="col-sm-6 col-lg-4 all filter-minuman">
-                  <div class="box" id="zoom-effect">
+              <a href="produk.php?id=<?= $row["id_produk"]; ?>">
+                <div class="col-6 col-lg-3 all filter-minuman">
+                  <div class="box card-produk" id="zoom-effect">
                     <div class="kotak">
                       <img src="../img/<?= $row["gambar_produk"]; ?>" class="img-fluid" alt="">
                     </div>
                     <div class="portfolio-info" id="konten">
-                      <h4><?= $row["nama_produk"]; ?></h4>
+                      <h6><?= $row["nama_produk"]; ?></h6>
+                      <div class="spaceharga"></div>
                       <p><?= "Rp.", number_format($row["harga_produk"], 0, ',', '.'); ?></p>
                     </div>
                   </div>
@@ -183,14 +185,15 @@ $produk_snack = query("SELECT * FROM produk WHERE tipe_produk = 'Snack'");
           </div>
 
           <?php foreach ($produk_toping as $row) : ?>
-            <a href="products.php?id=<?= $row["id_produk"]; ?>">
-              <div class="col-sm-6 col-lg-4 all filter-toping">
-                <div class="box" id="zoom-effect">
+            <a href="produk.php?id=<?= $row["id_produk"]; ?>">
+              <div class="col-6 col-lg-3 all filter-toping">
+                <div class="box card-produk" id="zoom-effect">
                   <div>
                     <img src="../img/<?= $row["gambar_produk"]; ?>" class="img-fluid" alt="">
                   </div class="kotak">
                   <div class="portfolio-info" id="konten">
-                    <h4><?= $row["nama_produk"]; ?></h4>
+                    <h6><?= $row["nama_produk"]; ?></h6>
+                    <div class="spaceharga"></div>
                     <p><?= "Rp.", number_format($row["harga_produk"], 0, ',', '.'); ?></p>
                   </div>
                 </div>
@@ -199,14 +202,15 @@ $produk_snack = query("SELECT * FROM produk WHERE tipe_produk = 'Snack'");
           <?php endforeach; ?>
 
           <?php foreach ($produk_snack as $row) : ?>
-            <a href="products.php?id=<?= $row["id_produk"]; ?>">
-              <div class="col-sm-6 col-lg-4 all filter-snack">
-                <div class="box" id="zoom-effect">
+            <a href="produk.php?id=<?= $row["id_produk"]; ?>">
+              <div class="col-6 col-lg-3 all filter-snack">
+                <div class="box card-produk" id="zoom-effect">
                   <div>
                     <img src="../img/<?= $row["gambar_produk"]; ?>" class="img-fluid" alt="">
                   </div class="kotak">
                   <div class="portfolio-info" id="konten">
-                    <h4><?= $row["nama_produk"]; ?></h4>
+                    <h6><?= $row["nama_produk"]; ?></h6>
+                    <div class="spaceharga"></div>
                     <p><?= "Rp.", number_format($row["harga_produk"], 0, ',', '.'); ?></p>
                   </div>
                 </div>
@@ -216,9 +220,6 @@ $produk_snack = query("SELECT * FROM produk WHERE tipe_produk = 'Snack'");
 
 
         </div>
-      </div>
-      <div class="btn-box">
-        <a href="#"> View More </a>
       </div>
     </div>
   </section>

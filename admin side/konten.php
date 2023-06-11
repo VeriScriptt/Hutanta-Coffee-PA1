@@ -4,6 +4,12 @@ if (!isset($_SESSION["auth"])) {
     header("Location: ../customer side/login.php");
     exit;
 }
+
+if ($_SESSION['id_akun'] !== '1') {
+    // Jika pengguna bukan admin, arahkan ke halaman lain atau tampilkan pesan akses ditolak
+    header('Location: ../customer side/index.php');
+    exit;
+}
 ?>
 
 <?php require 'function.php';
@@ -35,8 +41,7 @@ $konten = query("SELECT * FROM konten ");
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-
+    <link rel="shortcut icon" href="../customer side/images/hutanta.png" type="" />
 
 </head>
 
@@ -60,7 +65,7 @@ $konten = query("SELECT * FROM konten ");
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Beranda</span></a>
@@ -96,7 +101,7 @@ $konten = query("SELECT * FROM konten ");
             </div>
 
             <!-- Nav Item - Konten -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="konten.php">
                     <i class="fas fa-fw fa-camera"></i>
                     <span>Konten</span></a>
@@ -193,7 +198,6 @@ $konten = query("SELECT * FROM konten ");
                                     <thead>
                                         <tr>
                                             <th>NO</th>
-                                            <th>Judul</th>
                                             <th>Keterangan</th>
                                             <th>Gambar</th>
                                             <th>Aksi</th>
@@ -202,7 +206,6 @@ $konten = query("SELECT * FROM konten ");
                                     <tfoot>
                                         <tr>
                                             <th>NO</th>
-                                            <th>Judul</th>
                                             <th>Keterangan</th>
                                             <th>Gambar</th>
                                             <th>Aksi</th>
@@ -213,7 +216,6 @@ $konten = query("SELECT * FROM konten ");
                                         <?php foreach ($konten as $row) : ?>
                                             <tr>
                                                 <td><?= $i; ?></td>
-                                                <td><?= $row["judul"]; ?></td>
                                                 <td><?= $row["keterangan"]; ?></td>
                                                 <td>
                                                     <div>
