@@ -170,7 +170,7 @@ if (isset($_POST["checkout"])) {
                                     unset($_SESSION["keranjang"]);
                                 
                                     echo "<script>alert('Checkout berhasil.');</script>";
-                                    echo "<script>location='index.php';</script>";
+                                    echo "<script>location='menu.php';</script>";
                                     exit;
                                 }
                                 ?>
