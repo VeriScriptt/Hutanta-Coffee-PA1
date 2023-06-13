@@ -29,15 +29,23 @@ function tambah($data)
     }
 
     //query insert data
-
-
     $query = "INSERT INTO produk 
                 VALUES
             ('$id_produk', '$nama_produk', '$deskripsi','$kuantitas', '$tipe_produk', '$harga_produk','$gambar_produk')
         ";
-    mysqli_query($conn, $query);
 
-    return mysqli_affected_rows($conn);
+    try {
+        mysqli_query($conn, $query);
+        return mysqli_affected_rows($conn);
+    } catch (mysqli_sql_exception $e) {
+        $error = $e->getMessage();
+        if (strpos($error, "Duplicate entry") !== false && strpos($error, "nama_produk") !== false) {
+            echo '<script>alert("Nama produk sudah ada dalam database!");</script>';
+        } else {
+            echo '<script>alert("Gagal menambahkan data!");</script>';
+        }
+        return false;
+    }
 }
 
 
@@ -193,6 +201,7 @@ function edit($data)
     $id_produk = $data["id_produk"];
     $nama_produk = htmlspecialchars($data["nama_produk"]);
     $deskripsi = htmlspecialchars($data["deskripsi"]);
+    $kuantitas = htmlspecialchars($data["kuantitas"]);
     $harga_produk =  $data["harga_produk"];
     $tipe_produk = htmlspecialchars($data["tipe_produk"]);
     $gambarLama = htmlspecialchars($data["gambarLama"]);
@@ -206,7 +215,8 @@ function edit($data)
     //query insert data
     $query = "UPDATE produk SET
                     nama_produk = '$nama_produk', 
-                    deskripsi = '$deskripsi',   
+                    deskripsi = '$deskripsi',  
+                    kuantitas = '$kuantitas',    
                     harga_produk = '$harga_produk',
                     tipe_produk = '$tipe_produk',
                     gambar_produk = '$gambar_produk'

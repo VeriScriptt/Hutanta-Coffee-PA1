@@ -272,7 +272,7 @@ if (isset($_POST["submit"])) {
       <div class="row">
         <div class="col-md-6">
           <div class="form_container">
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
               <div>
                 <input type="hidden" class="form-control" name="id_ulasan" />
                 <input type="hidden" class="form-control" name="id_pelanggan" value="<?php echo $resultIdAkun['id_akun']; ?>" />
@@ -285,13 +285,23 @@ if (isset($_POST["submit"])) {
               </div>
               <div>
                 <label for="pesan">Pesan :</label>
-                <textarea style="height: 200px;" class="form-control input" placeholder="Masukkan pesan anda..." name="pesan"></textarea>
+                <textarea style="height: 200px;" class="form-control input" placeholder="Masukkan pesan anda..." name="pesan" id="myTextarea"></textarea>
                 <input type="hidden" class="form-control" name="status" value="Tampilkan" name="" />
               </div>
               <div class="btn_box">
                 <button type="submit" name="submit" id="submit">Kirim</button>
               </div>
             </form>
+            <script>
+              function validateForm() {
+                var textareaValue = document.getElementById("myTextarea").value;
+                if (textareaValue === "") {
+                  alert("Pesan harus diisi!");
+                  return false;
+                }
+                return true;
+              }
+            </script>
           </div>
         </div>
       </div>

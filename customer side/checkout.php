@@ -160,6 +160,20 @@ if (isset($_POST["checkout"])) {
                                     $koneksi->query("INSERT INTO pemesanan VALUES ('$id_pemesanan', '$id_pelanggan','$status_pemesanan', '$tanggal_pembelian', '$totalbelanja')");
                                 }
                                 ?>
+                                <?php
+                                if (isset($_POST["checkout"])) {
+                                    // Proses checkout dilakukan
+                                
+                                    // Lakukan langkah-langkah checkout yang diperlukan
+                                
+                                    // Hapus produk dari keranjang
+                                    unset($_SESSION["keranjang"]);
+                                
+                                    echo "<script>alert('Checkout berhasil.');</script>";
+                                    echo "<script>location='index.php';</script>";
+                                    exit;
+                                }
+                                ?>
                             </script>
                         </div>
                     </div>

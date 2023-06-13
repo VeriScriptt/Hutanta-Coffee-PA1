@@ -163,8 +163,7 @@ $konten = query("SELECT * FROM konten WHERE keterangan = 'kopi toba'");
             </div>
             <div data-aos="fade-left" data-aos-duration="1000">
               <p>
-                Mari kita merasakan kenikmatan yang tiada tara dengan secangkir kopi di Hutanta Coffee. Rasakan sentuhan lembut aroma kopi yang menguar, memikat indera dan menenangkan jiwa. Nikmati setiap tegukan, dengan hati yang terbuka untuk merasakan perpaduan sempurna antara kekayaan rasa dan kehangatan yang melintasi bibir. Biarkan diri Anda terhanyut dalam keindahan setiap seduhan, sambil menghargai karya seni yang tercipta dari proses penggilingan dan penyeduhan dengan penuh keahlian. Di Hutanta Coffee, setiap cangkir adalah sebuah pengalaman yang memanjakan selera dan mengajak kita untuk melambat sejenak, menikmati kelezatan kopi dan menghadirkan kebahagiaan dalam setiap tegukan.
-              </p>
+                Mari kita merasakan kenikmatan yang tiada tara dengan secangkir kopi di Hutanta Coffee. Rasakan sentuhan lembut aroma kopi yang menguar, memikat indera dan menenangkan jiwa. Nikmati setiap tegukan, dengan hati yang terbuka untuk merasakan perpaduan sempurna antara kekayaan rasa dan kehangatan yang melintasi bibir. Biarkan diri Anda terhanyut dalam keindahan setiap seduhan, sambil menghargai karya seni yang tercipta dari proses penggilingan dan penyeduhan dengan penuh keahlian. Di Hutanta Coffee, setiap cangkir adalah sebuah pengalaman yang memanjakan selera dan mengajak kita untuk melambat sejenak, menikmati kelezatan kopi dan menghadirkan kebahagiaan dalam setiap tegukan. </p>
             </div>
           </div>
         </div>

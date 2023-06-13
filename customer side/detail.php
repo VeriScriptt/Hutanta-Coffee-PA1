@@ -85,7 +85,7 @@ require 'function.php';
                     <form method="post">
                         <div class="form-group">
                             <label for="jumlah">Jumlah:</label>
-                            <input type="number" min="1" class="form-control" value="1" name="jumlah" id="jumlah">
+                            <input type="number" min="1" class="form-control" value="1" name="jumlah" id="jumlah" required>
                             <div class="input-group-btn mt-2">
                                 <button class="btn btn-primary" name="beli" id="beli-btn">Beli Sekarang</button>
                             </div>
@@ -95,6 +95,30 @@ require 'function.php';
             </div>
         </div>
     </section>
+    <?php if (isset($_POST["beli"])) {
+        //mendapat jumlah yang di input
+        $jumlah = $_POST["jumlah"];
+        //masukkan keranjang belanja
+
+        if ($jumlah > $detail["kuantitas"]) {
+            echo "<script>alert('Jumlah pemesanan melebihi stok yang tersedia.');</script>";
+        } else {
+            // Jumlah pemesanan sesuai dengan stok yang tersedia
+            $_SESSION["keranjang"][$id_produk] = $jumlah;
+    
+            // Mengurangi stok
+            $stokBaru = $detail["kuantitas"] - $jumlah;
+            $koneksi->query("UPDATE produk SET kuantitas='$stokBaru' WHERE id_produk='$id_produk'");
+    
+            echo "<script>alert('Data anda di simpan ke keranjang.');</script>";
+            echo "<script>location='keranjang.php';</script>";
+            exit;
+        }
+
+    }
+    ?>
+    
+
     <style>
         .kontent {
             margin-top: 50px;
@@ -133,7 +157,7 @@ require 'function.php';
                 event.preventDefault(); // Mencegah form submit secara default
                 var jumlah = $("#jumlah").val(); // Mendapatkan nilai jumlah
 
-                if (jumlah < 1) { // Memastikan jumlah yang dimasukkan lebih besar dari 0
+                if ($jumlah > $detail) { // Memastikan jumlah yang dimasukkan lebih besar dari 0
                     alert("Jumlah harus lebih besar dari 0.");
                     return;
                 }
@@ -141,7 +165,7 @@ require 'function.php';
                 // Mengirim form secara AJAX
                 $.ajax({
                     type: "POST",
-                    url: "beli.php",
+                    url: "",
                     data: {
                         jumlah: jumlah
                     },
@@ -160,17 +184,7 @@ require 'function.php';
 
 
 
-    <?php if (isset($_POST["beli"])) {
-        //mendapat jumlah yang di input
-        $jumlah = $_POST["jumlah"];
-        //masukkan keranjang belanja
-        $_SESSION["keranjang"][$id_produk] = $jumlah;
 
-        echo "<script>alert('Data anda di simpan ke keranjang');</script>";
-        echo "<script>location='keranjang.php';</script>";
-    }
-
-    ?>
     </div>
     </div>
     </div>

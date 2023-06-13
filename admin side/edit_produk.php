@@ -247,6 +247,12 @@ if (isset($_POST["submit"])) {
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
+                                                    <label for="hargatipea" class="col-sm-2 col-form-label">Kuantitas</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control " id="kuantitas" name="kuantitas" value="<?= $produk1["kuantitas"]; ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
                                                     <label for="hargatipea" class="col-sm-2 col-form-label">Gambar</label>
                                                     <div class="col-sm-10">
                                                         <img src="PRAKTIKUM/<?= $produk1["gambar_produk"]; ?>" class="img-preview mb-3 col-sm-5" alt="">

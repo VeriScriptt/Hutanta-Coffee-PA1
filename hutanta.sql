@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2023 at 04:21 PM
+-- Generation Time: Jun 13, 2023 at 04:51 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -155,7 +155,14 @@ INSERT INTO `pemesanan` (`id_pemesanan`, `id_pelanggan`, `status`, `tanggal`, `t
 (16, 5, 'Menunggu', '2023-06-09 06:07:54', '35000'),
 (17, 5, 'Menunggu', '2023-06-09 06:08:18', '35000'),
 (18, 3, 'Menunggu', '2023-06-09 11:33:01', '60000'),
-(19, 5, 'Menunggu', '2023-06-11 16:15:35', '50000');
+(19, 5, 'Menunggu', '2023-06-11 16:15:35', '50000'),
+(20, 5, 'Menunggu', '2023-06-13 16:15:33', '40000'),
+(21, 5, 'Menunggu', '2023-06-13 16:16:19', '2465000'),
+(22, 5, 'Menunggu', '2023-06-13 16:20:49', '2465000'),
+(23, 5, 'Menunggu', '2023-06-13 16:23:12', '2488000'),
+(24, 5, 'Menunggu', '2023-06-13 16:24:16', '2488000'),
+(25, 5, 'Menunggu', '2023-06-13 16:28:22', '15000'),
+(26, 5, 'Menunggu', '2023-06-13 16:31:55', '15000');
 
 -- --------------------------------------------------------
 
@@ -179,14 +186,14 @@ CREATE TABLE `produk` (
 
 INSERT INTO `produk` (`id_produk`, `nama_produk`, `deskripsi`, `kuantitas`, `tipe_produk`, `harga_produk`, `gambar_produk`) VALUES
 (2, 'Hot Coffee Latte', 'Campuran sempurna antara espresso pekat dan kelembutan susu yang memanjakan lidah Anda. Rasakan keharmonisan rasa yang kaya, dengan sentuhan pahit dan manis yang terasa dalam setiap tegukan', 100, 'Minuman', '25000', '645cfcb67011b.jpg'),
-(5, 'Dimsum Ayam', 'Dimsum adalah sejenis hidangan kecil yang terdiri dari berbagai macam makanan gigitan, dibungkus dengan kulit tipis seperti pangsit atau dimsum.Dari pangsit yang renyah dan lezat hingga bola daging yang kenyal dan beraroma, setiap suapan menghadirkan kombinasi rasa yang menggugah selera', 100, 'Toping', '23000', '645cfd3fe5087.jpg'),
+(5, 'Dimsum Ayam', 'Dimsum adalah sejenis hidangan kecil yang terdiri dari berbagai macam makanan gigitan, dibungkus dengan kulit tipis seperti pangsit atau dimsum.Dari pangsit yang renyah dan lezat hingga bola daging yang kenyal dan beraroma, setiap suapan menghadirkan kombinasi rasa yang menggugah selera', 1000, 'Toping', '23000', '645cfd3fe5087.jpg'),
 (6, 'Ice Afogato', ' Ice afogato adalah minuman yang menyegarkan dan lezat, dengan es krim lembut yang ditempatkan di atas espresso yang baru diseduh. Gabungan antara suhu dingin dan panas menciptakan sensasi yang unik saat es krim mulai meleleh dan bercampur dengan aroma kopi yang kaya. ', 100, 'Minuman', '28000', '645cfd851c1a8.jpg'),
 (7, 'Spagethi', 'Spaghetti adalah hidangan pasta yang terkenal, dengan mie panjang yang kenyal dimasak al dente dan disajikan dengan beragam saus yang menggugah selera. Setiap gigitan spaghetti memberikan sensasi kenyal yang memuaskan, dan saat dilumuri oleh saus yang kaya rasa, menghasilkan kombinasi yang sempurna antara tekstur dan cita rasa yang lezat', 100, 'Makanan', '35000', '645cfdd3a745a.jpeg'),
 (8, 'Ayam Goreng Madu', 'Ayam goreng madu adalah hidangan yang menggoda selera, dengan potongan ayam yang renyah dan dilapisi dengan saus madu yang manis dan lengkap dengan aroma yang menggugah. Kombinasi antara gurihnya daging ayam yang digoreng dengan manisnya saus madu menciptakan harmoni cita rasa yang sempurna, memberikan sensasi lezat dan memanjakan lidah', 100, 'Makanan', '45000', '645cfdfd74dfc.jpg'),
 (9, 'Roti Bakar', 'Roti bakar adalah hidangan sarapan yang terkenal dan populer, dengan irisan roti yang renyah dan gurih yang dipanggang hingga kecokelatan. Sajian ini memberikan sensasi yang memanjakan saat gigitan pertama, dengan tekstur yang renyah di luar dan lembut di dalam. ', 100, 'Snack', '15000', '645dbbbb0ec6a.jpg'),
-(10, 'Bihun Goreng Ayam', ' Bihun goreng ayam adalah hidangan Indonesia yang lezat, terdiri dari bihun yang digoreng dengan sempurna dan dicampur dengan potongan ayam yang gurih. Tekstur lembut bihun dan kelezatan daging ayam yang terasa saat dikombinasikan menciptakan pengalaman makan yang memuaskan bagi para pecinta kuliner.', 100, 'Makanan', '25000', '6461a4dbc6388.jpg'),
+(10, 'Bihun Goreng Ayam', ' Bihun goreng ayam adalah hidangan Indonesia yang lezat, terdiri dari bihun yang digoreng dengan sempurna dan dicampur dengan potongan ayam yang gurih. Tekstur lembut bihun dan kelezatan daging ayam yang terasa saat dikombinasikan menciptakan pengalaman makan yang memuaskan bagi para pecinta kuliner.', 1, 'Makanan', '25000', '6461a4dbc6388.jpg'),
 (11, 'Hot Vanilla Latte', 'Hot vanilla latte adalah minuman hangat yang menggugah selera, dengan perpaduan sempurna antara kopi espresso yang kaya dan manisnya vanilla. Sajian ini memberikan sensasi kehangatan dan kenyamanan saat diseruput, dengan aroma kopi yang menguar dan rasa vanilla yang menyelubungi lidah dengan kelembutan. ', 100, 'Minuman', '30000', '6461a5d80b673.jpeg'),
-(12, 'Indomie Rebus', 'Mie kering yang terbuat dari tepung terigu di rebus hingga menjadi lembut, kemudian disajikan dengan bumbu dan minyak khusus.', 100, 'Makanan', '15000', '6461a607c882b.jpg'),
+(12, 'Indomie Rebus', 'Mie kering yang terbuat dari tepung terigu di rebus hingga menjadi lembut, kemudian disajikan dengan bumbu dan minyak khusus.', 98, 'Makanan', '15000', '6461a607c882b.jpg'),
 (13, 'Ice Mochacinno', 'minuman kopi yang menyegarkan dengan kombinasi yang sempurna antara espresso, susu, cokelat, dan es serut.', 100, 'Minuman', '32000', '6461a643a0cba.jpeg'),
 (14, 'Pisang Marhara', 'Pisang Marhara, pisang yang dicelupkan ke dalam adonan tepung yang terbuat dari campuran tepung terigu, gula, dan rempah-rempah seperti kayu manis. Kemudian, pisang tersebut digoreng dalam minyak panas hingga kecokelatan dan krispi', 100, 'Snack', '17000', '6461a694515be.jpg'),
 (15, 'Ice Lemon Tea', 'Ice Lemon Tea adalah minuman segar yang terdiri dari teh hitam yang disajikan dengan es batu dan perasan air lemon. Rasanya yang seimbang antara rasa teh yang menyegarkan dan keasaman lemon memberikan sensasi kesegaran yang menyenangkan pada setiap tegukan.', 100, 'Minuman', '22000', '6461a7399d669.jpg'),
@@ -197,8 +204,8 @@ INSERT INTO `produk` (`id_produk`, `nama_produk`, `deskripsi`, `kuantitas`, `tip
 (21, 'Spagethi Carbonara ', 'Hidangan ini terdiri dari spaghetti yang dimasak al dente dan disajikan dengan saus carbonara kaya dan gurih.  Saus carbonara biasanya terbuat dari campuran telur, keju parmesan atau pecorino, pancetta atau bacon yang digoreng, serta bawang putih dan lada hitam.', 100, 'Makanan', '35000', '6461aa74ef40f.jpg'),
 (22, 'Roti Bakar Bontar', 'Hidangan ini terdiri dari dua lembar roti yang diisi dengan berbagai bahan selai atau topping, kemudian dipanggang atau digoreng hingga bagian luar roti menjadi renyah dan bagian dalamnya tetap lembut.', 100, 'Snack', '13000', '6461aa8d20177.jpeg'),
 (23, 'Pancake Hutanta', 'Pancake terbuat dari adonan tepung yang dicampur dengan telur, susu, dan bahan lainnya, kemudian digoreng di atas wajan datar atau griddle hingga matang.  Pancake memiliki tekstur yang lembut di tengah dan permukaan yang renyah.', 100, 'Snack', '30000', '6461aabbe3c81.jpg'),
-(24, 'Nasi Goreng Teri Medan', 'Nasi Goreng Teri Medan, nasi goreng yang dihasilkan memiliki cita rasa yang kaya dan gurih. Nasi goreng tersebut  dibumbui dengan rempah-rempah seperti bawang merah, bawang putih, cabai, dan terasi', 100, 'Makanan', '25000', '6461aad13a865.jpg'),
-(25, 'Indomie Goreng Keju', 'Hidangan ini menggabungkan mi instan goreng dengan sentuhan keju yang lezat.', 100, 'Makanan', '23000', '6461ab1641b48.jpg'),
+(24, 'Nasi Goreng Teri Medan', 'Nasi Goreng Teri Medan, nasi goreng yang dihasilkan memiliki cita rasa yang kaya dan gurih. Nasi goreng tersebut  dibumbui dengan rempah-rempah seperti bawang merah, bawang putih, cabai, dan terasi', 99, 'Makanan', '25000', '6461aad13a865.jpg'),
+(25, 'Indomie Goreng Keju', 'Hidangan ini menggabungkan mi instan goreng dengan sentuhan keju yang lezat.', 99, 'Makanan', '23000', '6461ab1641b48.jpg'),
 (26, 'Guan Fu Kwe Tiau', 'Guan Fu Kwe Tiau adalah hidangan makanan terdiri dari mie tebal yang digoreng dengan berbagai bahan seperti daging, seafood, sayuran, dan rempah-rempah yang khas, menciptakan rasa yang lezat dan tekstur yang kenyal.', 100, 'Makanan', '35000', '6461ab2cb961f.jpeg'),
 (27, 'French Fries', 'Terbuat dari potongan kentang yang digoreng hingga renyah di luar dan lembut di dalam, French Fries merupakan kombinasi sempurna antara cita rasa gurih dan tekstur yang renyah.', 100, 'Snack', '20000', '6461ab46baec6.jpg'),
 (28, 'Chicken Pop', 'Terbuat dari potongan ayam yang digoreng dengan kulit yang renyah dan daging yang juicy,Chicken Pop juga sering disajikan dengan berbagai saus tambahan, seperti saus barbekyu, saus pedas, atau saus mayo, yang menambahkan dimensi rasa yang beragam', 100, 'Toping', '25000', '6461ab6e4612a.jpg'),
@@ -217,7 +224,8 @@ INSERT INTO `produk` (`id_produk`, `nama_produk`, `deskripsi`, `kuantitas`, `tip
 (43, 'Ice Thai Tea', ' Ice Thai Tea adalah minuman yang menggugah selera, dengan perpaduan sempurna antara teh Thai yang khas dan rasa manis yang lezat. Saat disajikan dengan es batu, Ice Thai Tea memberikan sensasi kelembutan dan kesegaran yang memanjakan lidah, ditambah dengan sentuhan krim susu yang melengkapi cita rasa yang unik', 100, 'Minuman', '25000', '6461d270cfbe0.jpg'),
 (44, 'Ice V60 Tobanese Arabica', 'Ice V60 Tobanese Arabica adalah minuman yang istimewa, dengan menggunakan biji kopi Arabika Tobanese yang berkualitas tinggi dan diseduh menggunakan metode V60. Rasanya yang kaya, dengan sentuhan manis dan asam yang seimbang, memberikan pengalaman minum kopi yang memuaskan. Ketika disajikan dengan es batu', 100, 'Minuman', '37000', '6461d290b4639.jpeg'),
 (45, 'Kopi sanger', 'Kopi Sanger adalah minuman kopi yang unik dan menggugah selera, terdiri dari campuran kopi espresso yang kuat, perasan jeruk segar, dan sirup gula merah. Rasanya yang menyegarkan dengan kombinasi asam jeruk dan kekayaan kopi menciptakan sensasi yang tak terlupakan di lidah. Kopi Sanger menjadi pilihan yang populer untuk menyegarkan diri dan menikmati rasa unik yang menggabungkan citarasa kopi dan sentuhan jeruk yang segar.', 100, 'Minuman', '20000', '6461d32e47d84.jpeg'),
-(46, 'Kopi Tubruk Robusta', 'Kopi Tubruk Robusta adalah minuman kopi yang khas dan bercita rasa kuat, dengan biji kopi Robusta yang digiling kasar dan diseduh langsung dengan air panas. Rasanya yang pekat dan penuh karakter memberikan kelezatan yang kuat, dengan aroma yang khas dan sedap. Kopi Tubruk Robusta menjadi pilihan yang cocok bagi pecinta kopi yang menginginkan kekuatan dan keaslian rasa kopi yang khas.', 100, 'Minuman', '16000', '6461d354dddf6.jpg');
+(46, 'Kopi Tubruk Robusta', 'Kopi Tubruk Robusta adalah minuman kopi yang khas dan bercita rasa kuat, dengan biji kopi Robusta yang digiling kasar dan diseduh langsung dengan air panas. Rasanya yang pekat dan penuh karakter memberikan kelezatan yang kuat, dengan aroma yang khas dan sedap. Kopi Tubruk Robusta menjadi pilihan yang cocok bagi pecinta kopi yang menginginkan kekuatan dan keaslian rasa kopi yang khas.', 100, 'Minuman', '16000', '6461d354dddf6.jpg'),
+(48, 'awd', 'bagius', 33, 'Makanan', '1111000', '6488731ed59f0.jpg');
 
 -- --------------------------------------------------------
 
@@ -285,7 +293,8 @@ ALTER TABLE `pemesanan`
 -- Indexes for table `produk`
 --
 ALTER TABLE `produk`
-  ADD PRIMARY KEY (`id_produk`);
+  ADD PRIMARY KEY (`id_produk`),
+  ADD UNIQUE KEY `nama_produk` (`nama_produk`);
 
 --
 -- Indexes for table `ulasan`
@@ -320,13 +329,13 @@ ALTER TABLE `pelanggan`
 -- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id_produk` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `ulasan`

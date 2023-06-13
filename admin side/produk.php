@@ -193,6 +193,7 @@ $produk1 = query("SELECT * FROM produk");
                                             <th>Nama</th>
                                             <th>Kategori</th>
                                             <th>Deskripsi</th>
+                                            <th>Kuantitas</th>
                                             <th>Harga</th>
                                             <th>Gambar</th>
                                             <th>Aksi</th>
@@ -204,6 +205,7 @@ $produk1 = query("SELECT * FROM produk");
                                             <th>Nama</th>
                                             <th>Kategori</th>
                                             <th>Deskripsi</th>
+                                            <th>Kuantitas</th>
                                             <th>Harga</th>
                                             <th>Gambar</th>
                                             <th>Aksi</th>
@@ -217,6 +219,8 @@ $produk1 = query("SELECT * FROM produk");
                                                 <td><?= $row["nama_produk"]; ?></td>
                                                 <td><?= $row["tipe_produk"]; ?></td>
                                                 <td><?= $row["deskripsi"]; ?></td>
+                                                <td><?= $row["kuantitas"]; ?></td>
+
 
                                                 <td><?= "Rp.", number_format($row["harga_produk"], 0, ',', '.'); ?></td>
                                                 <td>
