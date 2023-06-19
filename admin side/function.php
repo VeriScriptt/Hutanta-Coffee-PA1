@@ -190,7 +190,15 @@ function hapus_ulasan($id_ulasan)
 function hapus_pemesanan($id_pemesanan)
 {
     global $conn;
-    mysqli_query($conn, "DELETE FROM pemesanan WHERE id_pemesanan = $id_pemesanan");
+
+    // Hapus entri terkait dari tabel detail_pesanan
+    mysqli_query($conn, "DELETE FROM detail_pesanan WHERE id_pesanan = $id_pemesanan");
+
+    // Hapus entri dari tabel pemesanan
+    $hapus_pemesanan = mysqli_prepare($conn, "DELETE FROM pemesanan WHERE id_pemesanan = ?");
+    mysqli_stmt_bind_param($hapus_pemesanan, "i", $id_pemesanan);
+    mysqli_stmt_execute($hapus_pemesanan);
+
     return mysqli_affected_rows($conn);
 }
 

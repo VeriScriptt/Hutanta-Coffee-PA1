@@ -218,7 +218,7 @@ if (isset($_POST["submit"])) {
                                                 <div class="form-group row">
                                                     <label for="harga_produk" class="col-sm-2 col-form-label">Harga</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control " id="harga_produk" name="harga_produk" required>
+                                                        <input type="number" class="form-control " id="harga_produk" min="1" name="harga_produk" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -235,7 +235,7 @@ if (isset($_POST["submit"])) {
                                                 <div class="form-group row">
                                                     <label for="kuantitas" class="col-sm-2 col-form-label">Kuantitas</label>
                                                     <div class="col-sm-10">
-                                                        <input type="number" class="form-control " id="kuantitas" name="kuantitas" required>
+                                                        <input type="number" class="form-control " id="kuantitas" min="1" name="kuantitas" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">

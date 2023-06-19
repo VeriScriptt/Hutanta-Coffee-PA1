@@ -106,10 +106,6 @@ require 'function.php';
             // Jumlah pemesanan sesuai dengan stok yang tersedia
             $_SESSION["keranjang"][$id_produk] = $jumlah;
     
-            // Mengurangi stok
-            $stokBaru = $detail["kuantitas"] - $jumlah;
-            $koneksi->query("UPDATE produk SET kuantitas='$stokBaru' WHERE id_produk='$id_produk'");
-    
             echo "<script>alert('Data anda di simpan ke keranjang.');</script>";
             echo "<script>location='keranjang.php';</script>";
             exit;

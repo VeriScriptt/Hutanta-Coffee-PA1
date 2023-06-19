@@ -113,7 +113,7 @@ if (isset($_POST["submit"])) {
                 <a class="nav-link" href="index.php">Beranda<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="menu.php">Menu</a>
+                <a class="nav-link" href="menu.php">Menu Restoran</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="coffee.php">Kopi Toba</a>

@@ -13,7 +13,20 @@ if ($_SESSION['id_akun'] !== '1') {
 ?>
 
 <?php require 'function.php';
-$pemesanan = query("SELECT * FROM pemesanan pem INNER JOIN pelanggan pel ON pem.id_pelanggan = pel.id_pelanggan");
+// $pemesanan = query("SELECT * FROM pemesanan pem INNER JOIN pelanggan pel ON pem.id_pelanggan = pel.id_pelanggan ORDER BY id_pemesanan DESC");
+$pemesanan = query("SELECT pem.id_pemesanan, pem.tanggal, pem.id_pelanggan, pem.status, pem.total, pel.id_pelanggan, pel.nama_lengkap, dp.id_produk, dp.kuantitas
+                   FROM pemesanan pem 
+                   INNER JOIN pelanggan pel ON pem.id_pelanggan = pel.id_pelanggan 
+                   INNER JOIN detail_pesanan dp ON pem.id_pemesanan = dp.id_pesanan 
+                   GROUP BY pem.id_pemesanan, pel.nama_lengkap 
+                   ORDER BY pem.id_pemesanan DESC");
+
+$detail_pesanan = query("SELECT DISTINCT p.nama_produk,dp.kuantitas
+                         FROM produk p 
+                         INNER JOIN detail_pesanan dp ON p.id_produk = dp.id_produk 
+                         ORDER BY p.id_produk DESC");
+
+
 ?>
 
 <!DOCTYPE html>
@@ -188,8 +201,9 @@ $pemesanan = query("SELECT * FROM pemesanan pem INNER JOIN pelanggan pel ON pem.
                                             <th>NO</th>
                                             <th>Nama</th>
                                             <th>Tanggal</th>
-                                            <th>Jumlah</th>
+                                            <th>Total Harga</th>
                                             <th>Status</th>
+                                            <th>Detail pesanan</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -198,8 +212,9 @@ $pemesanan = query("SELECT * FROM pemesanan pem INNER JOIN pelanggan pel ON pem.
                                             <th>NO</th>
                                             <th>Nama</th>
                                             <th>Tanggal</th>
-                                            <th>Jumlah</th>
+                                            <th>Total Harga</th>
                                             <th>Status</th>
+                                            <th>Detail pesanan</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </tfoot>
@@ -212,9 +227,14 @@ $pemesanan = query("SELECT * FROM pemesanan pem INNER JOIN pelanggan pel ON pem.
                                                 <td><?= $row["tanggal"]; ?></td>
                                                 <td><?= "Rp.", number_format($row["total"], 0, ',', '.'); ?></td>
                                                 <td><?= $row["status"]; ?></td>
+                                                <td>
+                                                    
+                                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detailModal<?= $row['id_pemesanan']; ?>">Lihat Detail</button>
+
+                                                </td>
 
                                                 <td>
-                                                    <a href="edit_pemesanan_verifikasi.php?id=<?= $row["id_pemesanan"]; ?>" class="btn btn-success btn-icon-split">
+                                                    <a href="edit_pemesanan_verifikasi.php?id=<?= $row['id_pemesanan']; ?>" class="btn btn-success btn-icon-split">
                                                         <span class="icon text-white-50">
                                                             <i class="fas fa-check"></i>
                                                         </span>
@@ -258,8 +278,78 @@ $pemesanan = query("SELECT * FROM pemesanan pem INNER JOIN pelanggan pel ON pem.
                 </div>
             </footer>
             <!-- End of Footer -->
+            <!-- Modal Detail Pesanan -->
+
+
 
         </div>
+       <!-- Modal Detail Pesanan -->
+         <!-- Modal Detail Pesanan -->
+            <?php foreach ($pemesanan as $row) : ?>
+                <div class="modal fade" id="detailModal<?= $row['id_pemesanan']; ?>" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel<?= $row['id_pemesanan']; ?>" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="detailModalLabel<?= $row['id_pemesanan']; ?>">Detail Pesanan</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h6>Nama Pelanggan: <?= $row['nama_lengkap']; ?></h6>
+                                <h6>Tanggal Pemesanan: <?= $row['tanggal']; ?></h6>
+                                <h6>Total Harga: Rp. <?= number_format($row['total'], 0, ',', '.'); ?></h6>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Produk</th>
+                                            <th>Kuantitas</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $detail_pesanan = query("SELECT p.nama_produk,dp.kuantitas
+                                        FROM produk p 
+                                        INNER JOIN detail_pesanan dp ON p.id_produk = dp.id_produk 
+                                        WHERE dp.id_pesanan = " . $row['id_pemesanan'] . "
+                                        ORDER BY p.id_produk DESC");
+                                        
+                                        $no = 1;
+                                        foreach ($detail_pesanan as $detail) :
+                                        ?>
+                                            <tr>
+                                                <td><?= $no; ?></td>
+                                                <td><?= $detail['nama_produk']; ?></td>
+                                                <td><?= $detail['kuantitas']; ?></td>
+                                            </tr>
+                                            <?php $no++; ?>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            <!-- End of Modal Detail Pesanan -->
+
+
+
+                    
+                    <!-- Add more order details as needed -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                </div>
+                </div>
+            </div>
+            </div>
+
         <!-- End of Content Wrapper -->
 
     </div>
@@ -289,6 +379,9 @@ $pemesanan = query("SELECT * FROM pemesanan pem INNER JOIN pelanggan pel ON pem.
         </div>
     </div>
 
+
+
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -299,12 +392,16 @@ $pemesanan = query("SELECT * FROM pemesanan pem INNER JOIN pelanggan pel ON pem.
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- Page level plugins -->
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+
+
 
 </body>
 

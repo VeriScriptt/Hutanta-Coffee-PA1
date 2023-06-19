@@ -8,8 +8,8 @@ if (empty($_SESSION["keranjang"])) {
 }
 
 $total_jumlah = 0; // variabel untuk menyimpan total jumlah
-foreach ($_SESSION["keranjang"] as $id_produk => $jumlah) {
-    $total_jumlah += $jumlah; // menambahkan nilai jumlah ke variabel total_jumlah
+if(!isset($_SESSION['keranjang'])){
+    $_SESSION['keranjang'] = array();
 }
 $_SESSION['swtd'] = $total_jumlah;
 

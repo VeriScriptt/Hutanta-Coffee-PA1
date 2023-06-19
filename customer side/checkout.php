@@ -153,11 +153,25 @@ if (isset($_POST["checkout"])) {
                                 <?php
                                 if (isset($_POST["checkout"])) {
                                     $id_pelanggan =  $resultIdAkun['id_pelanggan'];
+                                    date_default_timezone_set('Asia/Jakarta');
                                     $tanggal_pembelian = date("Y-m-d H:i:s");
                                     $status_pemesanan = 'Menunggu';
                                     $totalbelanja = $totalbelanja;
                                     // Menyimpan data ke tabel pemesanan
                                     $koneksi->query("INSERT INTO pemesanan VALUES ('$id_pemesanan', '$id_pelanggan','$status_pemesanan', '$tanggal_pembelian', '$totalbelanja')");
+                                    // Menyimpan data ke tabel detail pesanan
+                                    foreach ($_SESSION['keranjang'] as $id_produk => $jumlah) : 
+                                        // Ambil informasi produk dari database
+                                        $ambil = $koneksi->query('SELECT * FROM produk WHERE id_produk=' . $id_produk);
+                                        $pecah = $ambil->fetch_assoc();
+                                        $data = $koneksi->query('SELECT * FROM pemesanan ORDER BY id_pemesanan DESC LIMIT 1');
+                                        $pemesanan = $data ->fetch_assoc();
+                                        $id_pesanan = $pemesanan['id_pemesanan'];
+                                        $subtotal = $pecah['harga_produk'] * $jumlah;
+                                        $koneksi->query("INSERT INTO detail_pesanan (kuantitas,subtotal,id_produk,id_pesanan) VALUES('$jumlah','$subtotal','$id_produk','$id_pesanan')");
+                                    endforeach;
+                                    unset($_SESSION["keranjang"]);
+
                                 }
                                 ?>
                                 <?php

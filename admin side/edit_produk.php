@@ -226,7 +226,7 @@ if (isset($_POST["submit"])) {
                                                 <div class="form-group row">
                                                     <label for="hargatipea" class="col-sm-2 col-form-label">Harga</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control " id="harga_produk" name="harga_produk" value="<?= $produk1["harga_produk"]; ?>">
+                                                        <input type="number" min="1" class="form-control " id="harga_produk" name="harga_produk" value="<?= $produk1["harga_produk"]; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -249,7 +249,7 @@ if (isset($_POST["submit"])) {
                                                 <div class="form-group row">
                                                     <label for="hargatipea" class="col-sm-2 col-form-label">Kuantitas</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control " id="kuantitas" name="kuantitas" value="<?= $produk1["kuantitas"]; ?>">
+                                                        <input type="number" min="1" class="form-control " id="kuantitas" name="kuantitas" value="<?= $produk1["kuantitas"]; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">

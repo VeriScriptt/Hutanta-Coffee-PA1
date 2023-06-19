@@ -97,7 +97,7 @@ $produk_snack = query("SELECT * FROM produk WHERE tipe_produk = 'Snack'");
                 <a class="nav-link" href="index.php">Beranda<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="menu.php">Menu</a>
+                <a class="nav-link" href="menu.php">Menu Restoran</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="coffee.php">Kopi Toba</a>
