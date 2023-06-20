@@ -181,7 +181,7 @@ $total_ulasan = count($ulasan);
               <div class="detail-box">
                 <h5 style="font-family: Georgia">Kopi Toba Robusta</h5>
                 <h6><span>Rp</span> 48.000</h6>
-                <a href="whatsapp://send?text=Hallo%20Hutanta%20Coffee%2C%20saya%20ingin%20melakukan%20pemesanan%20produk.%0ANama%3A%20(Diisi%20nama%20lengkap)%0AAlamat%3A%20(Jalan%2C%20No%2C%20Gang%2C%20RT%2FRW%2FDusun%2C%20Kel%2C%20Kec%2C%20Kab%2FKota%2C%20Provinsi%2C%20Kode%20Pos)%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20No%20Telepon%3A%20(No%20aktif%20yang%20bisa%20dihubungi)%0AOrder%20%3A%20Kopi%20Toba%20Robusta%0AHarga%C2%A0%3A%C2%A0Rp%C2%A048.000&phone=+6285783303761">
+                <a href="coffee.php">
                   <i class="fa fa-whatsapp" aria-hidden="true"></i> Pesan Sekarang
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background: new 0 0 456.029 456.029" xml:space="preserve">
                     <g>
@@ -232,7 +232,7 @@ $total_ulasan = count($ulasan);
               <div class="detail-box">
                 <h5 style="font-family: Georgia">Kopi Toba Arabica</h5>
                 <h6><span>Rp</span> 56.000</h6>
-                <a href="whatsapp://send?text=Hallo%20Hutanta%20Coffee%2C%20saya%20ingin%20melakukan%20pemesanan%20produk.%0ANama%3A%20(Diisi%20nama%20lengkap)%0AAlamat%3A%20(Jalan%2C%20No%2C%20Gang%2C%20RT%2FRW%2FDusun%2C%20Kel%2C%20Kec%2C%20Kab%2FKota%2C%20Provinsi%2C%20Kode%20Pos)%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20No%20Telepon%3A%20(No%20aktif%20yang%20bisa%20dihubungi)%0AOrder%20%3A%20Kopi%20Toba%20Arabica%0AHarga%C2%A0%3A%C2%A0Rp%C2%A056.000&phone=+6285783303761">
+                <a href="coffee.php">
                   <i class="fa fa-whatsapp" aria-hidden="true"></i> Pesan Sekarang
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background: new 0 0 456.029 456.029" xml:space="preserve">
                     <g>
