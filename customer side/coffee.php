@@ -8,6 +8,52 @@ $query = mysqli_query($conn, "SELECT nama_lengkap FROM pelanggan WHERE id_akun =
 $resultIdAkun = mysqli_fetch_assoc($query);
 
 $konten = query("SELECT * FROM konten WHERE keterangan = 'kopi toba'");
+
+if (!isset($_SESSION['chart']) || empty($_SESSION['chart'])) {
+  // Tambahkan pesan umpan balik di sini
+  // $_SESSION['chart'] = array();
+  $error_message = "Anda belum memilih produk.";
+  // Redirect ke halaman pemesanan.php dengan menyertakan parameter error
+  // header('Location: coffee.php?error=' . urlencode($error_message));
+  // exit; // Pastikan kode berhenti di sini setelah melakukan redirect
+}
+if (isset($_POST['page']) && $_POST['page'] == 'preview') {
+  $pesan = 'Halo Hutanta Coffee
+
+  Data diri saya: 
+  Nama: *' . $_POST['nama'] . '*
+  Alamat Pengiriman: *' . $_POST['alamat'] . '*
+  Menu yang dipesan:
+  [daftarbelanja]';
+  if ($_POST['deskripsi'] != '') {
+      $pesan .= '
+
+  NOTES: *' . $_POST['deskripsi'] . '*
+
+  Terimakasih';
+  } else {
+      $pesan .= '
+
+  Terimakasih';
+  }
+  $belanja = '';
+  foreach ($_SESSION['chart'] as $id => $value) {
+      $query = "SELECT * FROM produk WHERE id_produk = $id";
+      $result_set = $conn->query($query);
+      while ($row = $result_set->fetch_assoc()) {
+          $belanja .= '
+         *-' . $row['nama_produk'] . ' : ' . $value . '*';
+      }
+  }
+  $pesan = str_replace('[daftarbelanja]', $belanja, $pesan);
+  unset($_SESSION['chart']);
+  $query = 'SELECT * FROM admin';
+  $result_set = $conn->query($query);
+  $row = $result_set->fetch_assoc();
+  $nomor_telepon =  $row['nomor_telepon_admin'];
+  $url = 'https://wa.me/' . $nomor_telepon . '?text=' . rawurlencode($pesan);
+  header('location:' . $url);
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +74,8 @@ $konten = query("SELECT * FROM konten WHERE keterangan = 'kopi toba'");
   <title>Kopi Toba</title>
 
   <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/kopi.css" />
+
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
@@ -251,8 +299,7 @@ $konten = query("SELECT * FROM konten WHERE keterangan = 'kopi toba'");
               <div class="detail-box">
                 <h5 style="font-family: Georgia">Kopi Toba Robusta</h5>
                 <h6><span>Rp</span> 48.000</h6>
-                <a href="whatsapp://send?text=Hallo%20Hutanta%20Coffee%2C%20saya%20ingin%20melakukan%20pemesanan%20produk.%0ANama%3A%20(Diisi%20nama%20lengkap)%0AAlamat%3A%20(Jalan%2C%20No%2C%20Gang%2C%20RT%2FRW%2FDusun%2C%20Kel%2C%20Kec%2C%20Kab%2FKota%2C%20Provinsi%2C%20Kode%20Pos)%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20No%20Telepon%3A%20(No%20aktif%20yang%20bisa%20dihubungi)%0AOrder%20%3A%20Kopi%20Toba%20Robusta%0AHarga%C2%A0%3A%C2%A0Rp%C2%A048.000&phone=+6285783303761">
-                  <i class="fa fa-whatsapp" aria-hidden="true"></i> Pesan Sekarang
+                <a href="?pilih=47&jumlah=1"><button onclick="pilih()" style="width:70px; height:auto;" type="button" class="btn btn-warning">Pilih</button>
                 </a>
               </div>
             </div>
@@ -265,8 +312,7 @@ $konten = query("SELECT * FROM konten WHERE keterangan = 'kopi toba'");
               <div class="detail-box">
                 <h5 style="font-family: Georgia">Kopi Toba Arabica</h5>
                 <h6><span>Rp</span> 56.000</h6>
-                <a href="whatsapp://send?text=Hallo%20Hutanta%20Coffee%2C%20saya%20ingin%20melakukan%20pemesanan%20produk.%0ANama%3A%20(Diisi%20nama%20lengkap)%0AAlamat%3A%20(Jalan%2C%20No%2C%20Gang%2C%20RT%2FRW%2FDusun%2C%20Kel%2C%20Kec%2C%20Kab%2FKota%2C%20Provinsi%2C%20Kode%20Pos)%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20No%20Telepon%3A%20(No%20aktif%20yang%20bisa%20dihubungi)%0AOrder%20%3A%20Kopi%20Toba%20Arabica%0AHarga%C2%A0%3A%C2%A0Rp%C2%A056.000&phone=+6285783303761">
-                  <i class="fa fa-whatsapp" aria-hidden="true"></i> Pesan Sekarang
+                <a href="?pilih=48&jumlah=1"><button onclick="pilih()" style="width:70px; height:auto;" type="button" class="btn btn-warning">Pilih</button>
                 </a>
               </div>
             </div>
@@ -279,8 +325,7 @@ $konten = query("SELECT * FROM konten WHERE keterangan = 'kopi toba'");
               <div class="detail-box">
                 <h5 style="font-family: Georgia">Kopi Toba Empresso</h5>
                 <h6><span>Rp</span> 56.000</h6>
-                <a href="whatsapp://send?text=Hallo%20Hutanta%20Coffee%2C%20saya%20ingin%20melakukan%20pemesanan%20produk.%0ANama%3A%20(Diisi%20nama%20lengkap)%0AAlamat%3A%20(Jalan%2C%20No%2C%20Gang%2C%20RT%2FRW%2FDusun%2C%20Kel%2C%20Kec%2C%20Kab%2FKota%2C%20Provinsi%2C%20Kode%20Pos)%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20No%20Telepon%3A%20(No%20aktif%20yang%20bisa%20dihubungi)%0AOrder%20%3A%20Kopi%20Toba%20Empresso%0AHarga%C2%A0%3A%C2%A0Rp%C2%A056.000&phone=+6285783303761">
-                  <i class="fa fa-whatsapp" aria-hidden="true"></i> Pesan Sekarang
+                <a href="?pilih=49&jumlah=1"><button onclick="pilih()" style="width:70px; height:auto;" type="button" class="btn btn-warning">Pilih</button>
                 </a>
               </div>
             </div>
@@ -293,8 +338,7 @@ $konten = query("SELECT * FROM konten WHERE keterangan = 'kopi toba'");
               <div class="detail-box">
                 <h5 style="font-family: Georgia">Kopi Toba Blend</h5>
                 <h6><span>Rp</span> 50.000</h6>
-                <a href="whatsapp://send?text=Hallo%20Hutanta%20Coffee%2C%20saya%20ingin%20melakukan%20pemesanan%20produk.%0ANama%3A%20(Diisi%20nama%20lengkap)%0AAlamat%3A%20(Jalan%2C%20No%2C%20Gang%2C%20RT%2FRW%2FDusun%2C%20Kel%2C%20Kec%2C%20Kab%2FKota%2C%20Provinsi%2C%20Kode%20Pos)%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20No%20Telepon%3A%20(No%20aktif%20yang%20bisa%20dihubungi)%0AOrder%20%3A%20Kopi%20Toba%20Blend%0AHarga%C2%A0%3A%C2%A0Rp%C2%A050.000&phone=+6285783303761">
-                  <i class="fa fa-whatsapp" aria-hidden="true"></i> Pesan Sekarang
+                <a href="?pilih=50&jumlah=1"><button onclick="pilih()" style="width:70px; height:auto;" type="button" class="btn btn-warning">Pilih</button>
                 </a>
               </div>
             </div>
@@ -303,8 +347,134 @@ $konten = query("SELECT * FROM konten WHERE keterangan = 'kopi toba'");
       </div>
     </div>
   </section>
-
   <!-- end offer section -->
+
+
+  <div class="heading_container heading_center">
+    <h3><B>Form Pemesanan</B></h3>
+  </div>
+    <form class="whatsapp-form" action="" method="post"  id="kopikemasan">
+      <div class="datainput">
+      <input class="validate" id="wa_name" name="nama" required="" type="text" value=''/>
+      <span class="highlight"></span><span class="bar"></span>
+      <label>Nama</label>
+      </div>
+      <div class="datainput">
+      <input class="validate" id="wa_email" name="alamat" required="" type="text" value=''/>
+      <span class="highlight"></span><span class="bar"></span>
+      <label>Alamat</label>
+      </div>
+      <!-- <div class="datainput">
+        <select id="wa_select" multiple>
+          <option hidden='hidden' selected='selected' value='default'>Select Option</option>
+          <option value="1">Kopi Toba Robusta</option>
+          <option value="2">Kopi toba capucino</option>
+          <option value="3">kopi toba mokalate</option>
+        </select>
+      </div> -->
+
+      <?php
+				if (isset($_GET['pilih']) && is_numeric($_GET['pilih']) && isset($_GET['jumlah']) && is_numeric($_GET['jumlah'])) {
+					if (isset($_SESSION['chart'][$_GET['pilih']])) {
+						$_SESSION['chart'][$_GET['pilih']] = $_SESSION['chart'][$_GET['pilih']] + $_GET['jumlah'];
+					} else {
+						$_SESSION['chart'][$_GET['pilih']] = $_GET['jumlah'];
+					}
+				} elseif (isset($_GET['tambah']) && is_numeric($_GET['tambah'])) {
+					if (isset($_SESSION['chart'][$_GET['tambah']]) && $_SESSION['chart'][$_GET['tambah']] > 0) {
+						$_SESSION['chart'][$_GET['tambah']]++;
+            echo "<script>alert('Produk berhasil ditambah')</script>";
+            echo "<script>window.location.hash = '#kopikemasan' </script>"
+            ;
+					}
+				} elseif (isset($_GET['kurangi']) && is_numeric($_GET['kurangi'])) {
+					if (isset($_SESSION['chart'][$_GET['kurangi']])) {
+						$_SESSION['chart'][$_GET['kurangi']]--;
+            echo "<script>alert('Produk berhasil dikurangi')</script>";
+            echo "<script>window.location.hash = '#kopikemasan' </script>";
+						if ($_SESSION['chart'][$_GET['kurangi']] <= 0) {
+							unset($_SESSION['chart'][$_GET['kurangi']]);
+
+						}
+					}
+				} elseif (isset($_GET['hapus']) && is_numeric($_GET['hapus'])) {
+					if (isset($_SESSION['chart'][$_GET['hapus']])) {
+						unset($_SESSION['chart'][$_GET['hapus']]);
+            echo "<script>alert('Produk berhasil dihapus')</script>";
+            echo "<script>window.location.hash = '#kopikemasan' </script>";
+					}
+				} elseif (isset($_GET['hapusall']) && $_GET['hapusall'] == 'ya') {
+					unset($_SESSION['chart']);
+          echo "<script>alert('Produk berhasil dihapus')</script>";
+          echo "<script>window.location.hash = '#kopikemasan' </script>";
+				}
+
+				if (isset($_SESSION['chart']) && count($_SESSION['chart']) > 0) {
+
+          echo '
+          <table class="table">
+          <thead>
+          <tr>
+          <th>Nama Produk</th>
+          <th>Jumlah</th>
+          <th>Harga</th>
+          <th>Aksi</th>
+          </tr>
+          </thead>
+          <tbody>';
+      $jumlah = 0;
+      foreach ($_SESSION['chart'] as $id => $value) {
+        $query = "SELECT * FROM produk WHERE id_produk = $id";
+        $result_set = $conn->query($query);
+        while ($row = $result_set->fetch_assoc()) {
+          echo '<tr><td>' . $row['nama_produk'] . '</td>
+            <td>' . $value . '</td>
+            <td>Rp. ' . number_format($row['harga_produk'] * $value, 0, ',', '.') . '</td>
+            <td>
+          <a href="?tambah=' . $id . '" title="Tambah"><i class="fa-solid fa-circle-plus fa-xl"></i></a>
+            <a href="?kurangi=' . $id . '" title="Kurangi"><i class="fa-solid fa-circle-minus fa-xl"></i></a>
+            <a href="?hapus=' . $id . '" title="Hapus"><i class="fa-solid fa-circle-xmark fa-xl"></i></a>
+            </td>
+            </tr>';
+          $jumlah = $jumlah + ($row['harga_produk'] * $value);
+        }
+      }
+      echo '
+            <tr><td colspan = "2" class="text-right"><b>Total Harga</b></td>
+            <td>Rp. ' . number_format($jumlah, 0, ',', '.') . '</td>
+          <td></td>
+
+            </tr>
+            </tbody>
+            </table>
+          <a href="?hapusall=ya"><button type="button" style="height:40px;width:auto;" class="btn btn-danger">Hapus Semua</button></a>
+          ';
+    }
+    ?>
+
+      <div class="jarak" style="height:50px;"></div>
+      <!-- <div class="datainput">
+      <input class="validate" id="wa_number" name="count" required="" type="number" value=''/>
+      <span class="highlight"></span><span class="bar"></span>
+      <label>Input Number</label>
+      </div> -->
+      <!-- <div class="datainput">
+      <input class="validate" id="wa_url" name="url" required="" type="url" value=''/>
+      <span class="highlight"></span><span class="bar"></span>
+      <label>URL/Link</label>
+      <p>Link blog Anda, gunakan http:// atau https://</p>
+      </div> -->
+      <div class="datainput">
+      <textarea id='wa_textarea' placeholder='' maxlength='5000' row='1' required="" name="deskripsi"></textarea>
+      <span class="highlight"></span><span class="bar"></span>
+      <label>Deskripsi</label>
+      </div>
+      <input type="hidden" name="page" value="preview">
+      <button name="kirim" class="btn btn-success" style=" height:35px; font-family:'Poppins';">Kirim</button>
+      <div id="text-info"></div>
+    </form><br><br><hr>
+
+
   <!-- Gallery -->
   <div class="heading_container heading_center">
     <h2>Our Sweet Coffee Galery</h2>
@@ -430,6 +600,52 @@ $konten = query("SELECT * FROM konten WHERE keterangan = 'kopi toba'");
       }
     });
   </script>
+  <script>
+    $(document).on('click','.send_form', function(){
+    var input_blanter = document.getElementById('wa_email');
+
+    /* Whatsapp Settings */
+    var walink = 'https://web.whatsapp.com/send',
+        phone = '6281370349867',
+        walink2 = 'Halo saya ingin ',
+        text_yes = 'Terkirim.',
+        text_no = 'Isi semua Formulir lalu klik Send.';
+
+    /* Smartphone Support */
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    var walink = 'whatsapp://send';
+    }
+
+    if("" != input_blanter.value){
+
+    /* Call Input Form */
+    var input_select1 = $("#wa_select :selected").text(),
+        input_name1 = $("#wa_name").val(),
+        input_email1 = $("#wa_email").val(),
+        input_number1 = $("#wa_number").val(),
+        input_url1 = $("#wa_url").val(),
+        input_textarea1 = $("#wa_textarea").val();
+
+    /* Final Whatsapp URL */
+    var blanter_whatsapp = walink + '?phone=' + phone + '&text=' + walink2 + '%0A%0A' +
+        '*Name* : ' + input_name1 + '%0A' +
+        '*Email Address* : ' + input_email1 + '%0A' +
+        '*Select Option* : ' + input_select1 + '%0A' +
+        '*Input Number* : ' + input_number1 + '%0A' +
+        '*URL/Link* : ' + input_url1 + '%0A' +
+        '*Description* : ' + input_textarea1 + '%0A';
+
+    /* Whatsapp Window Open */
+    window.open(blanter_whatsapp,'_blank');
+    document.getElementById("text-info").innerHTML = '<span class="yes">'+text_yes+'</span>';
+    } else {
+    document.getElementById("text-info").innerHTML = '<span class="no">'+text_no+'</span>';
+    }
+    });
+function pilih(){
+  alert('Produk berhasil ditambahkan ke form');
+}
+    </script>
 </body>
 
 </html>
