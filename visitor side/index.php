@@ -183,7 +183,7 @@ $total_ulasan = count($ulasan);
                 <h6><span>Rp</span> 48.000</h6>
                 <a href="coffee.php">
                   <i class="fa fa-whatsapp" aria-hidden="true"></i> Pesan Sekarang
-                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background: new 0 0 456.029 456.029" xml:space="preserve">
+                  <!-- <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background: new 0 0 456.029 456.029" xml:space="preserve">
                     <g>
                       <g>
                         <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
@@ -219,7 +219,7 @@ $total_ulasan = count($ulasan);
                     <g></g>
                     <g></g>
                     <g></g>
-                  </svg>
+                  </svg> -->
                 </a>
               </div>
             </div>
@@ -234,7 +234,7 @@ $total_ulasan = count($ulasan);
                 <h6><span>Rp</span> 56.000</h6>
                 <a href="coffee.php">
                   <i class="fa fa-whatsapp" aria-hidden="true"></i> Pesan Sekarang
-                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background: new 0 0 456.029 456.029" xml:space="preserve">
+                  <!-- <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background: new 0 0 456.029 456.029" xml:space="preserve">
                     <g>
                       <g>
                         <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
@@ -270,7 +270,7 @@ $total_ulasan = count($ulasan);
                     <g></g>
                     <g></g>
                     <g></g>
-                  </svg>
+                  </svg> -->
                 </a>
               </div>
             </div>

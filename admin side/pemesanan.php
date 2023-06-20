@@ -343,9 +343,6 @@ $detail_pesanan = query("SELECT DISTINCT p.nama_produk,dp.kuantitas
                     
                     <!-- Add more order details as needed -->
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                </div>
                 </div>
             </div>
             </div>
